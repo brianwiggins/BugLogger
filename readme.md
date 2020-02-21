@@ -10,43 +10,6 @@ Users can also add notes to the bug report providing detailed steps towards the 
 
 Once a bug has been closed, no further editing is allowed.
 
-Here are some mock-ups from the client.
-<hr>
-
-### Home View:
-<div>
-  <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="HomeView.jpg" />
-</div>
-<div>
-  <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="AddBug.jpg" />
-</div>
-
-From the Home page users can view all the bugs that have been added, color coded to which are open and closed(by status). You should be able to filter the bugs based on their status(open or closed).
-
-#### Challenges 
-Try to implement pagination here(display limited number of bugs per page). Modals for creating bugs instead of a static form could be a nice feature as well.
-<br>
-<br>
-<hr>
-
-
-### Details View:
-<div>
-  <img class="img-responsive"  style="border: 1px solid black;padding: 10px"  src="BugDetailsView.jpg" />
-</div>
-<div>
-  <img class="img-responsive"  style="border: 1px solid black;padding: 10px"  src="AddComment.jpg" />
-</div>
-
-The details view provides some additional information about the bug, as well as showing all the notes made by other users. Here notes can be created or removed.
-
-#### Challenges:
- See if you can implement the ability to go next or previous from this page. Modals for creating notes would be a nice feature instead of a static form always visible on the page.
-
-
-<hr>
-<br>
-<br>
 
 ## Bug-Report API
 
@@ -54,21 +17,20 @@ The details view provides some additional information about the bug, as well as 
 ### Bug Schema
 ```Javascript
 var bug = new Schema({
-    closed: { type: Boolean, required: true, default: false },
-    description: { type: String, required: true },
-    title: { type: String, required: true },
-    reportedBy: { type: String, required: true }, //The provided name for who reported the bug
-    closedDate: { type: Date}
+    closed: Boolean
+    description: String,
+    title: String,
+    reportedBy: String, //The provided name for who reported the bug
+    closedDate: Date
 }, { timestamps: true, toJSON: { virtuals: true } })
 ```
 
 ### Note Schema
 ```Javascript
 var note = new Schema({
-    content: { type: String, required: true },
-    bug: { type: ObjectId, ref: 'Bug' required: true },
-    reportedBy: { type: String, required: true }, //The provided name for who made the note
-    flagged: { type: String, enum: ["pending", "completed", "rejected"] }
+    content: String,
+    bug: ObjectId,
+    reportedBy: String, //The provided name for who made the note
 }, { timestamps: true, toJSON: { virtuals: true } })
 ```
 
@@ -112,30 +74,16 @@ Delete
 
 ## Requirements
 
-### Visualization
-- At least 2 supported front end routes
-    - Home shows all bugs
-    - BugDetails displays the details of a bug and its Notes
-- Bugs can be filtered by their status
-- Creating a new bug automatically navigates to the BugDetails view
-- Navbar to allow navigating back to Home view
-- Styling Indication on main page that bug is closed (color, strike-through, etc.)
-- Bugs display last modified date
-
 ### Functionality
-- Bugs can be created from the Home view
-- Bugs can be closed from the BugDetails view
-- User is prompted "are you sure?" when closing a Bug
-- Notes can be added and removed from a bug in the BugDetails view
-- User prompt to remove Note from Bug
+- Bugs have last modified date
+- Bugs can be created
+- Bugs can be closed
+- Bugs are closed, not deleted
+- Notes can be created
+- Notes can be removed from a bug
 - A Bug can be edited
 - Cannot edit a Bug after it is closed
-
-#### Challenges
-- Implement user auth
-- Modals for creating Bugs
-- Modals for creating Notes
-- Use sweet alert for prompts
+- All tests pass
 
 # TESTING:
  go to http://localhost:3000/#/test-runner to use a testing suite for your server.

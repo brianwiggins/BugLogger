@@ -13,11 +13,11 @@ let server = express();
 DbContext.connect();
 
 //NOTE Creates a reference to the build project on the client (if api only remove this line)
-server.use(express.static(__dirname + "/../client/dist"));
+server.use(express.static(__dirname + "/../dist"));
 
 //NOTE Allows requests from the port 8080, add additional addresses as needed
-var whitelist = ["http://localhost:8080"];
-var corsOptions = {
+let whitelist = ["http://localhost:8080"];
+let corsOptions = {
   origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
     callback(null, originIsWhitelisted);
