@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
-import Value from "../models/Value";
+import Bug from "../models/Bug.js";
 
-const _repository = mongoose.model("Value", Value);
+const _repository = mongoose.model("Bug", Bug);
 
-class ValueService {
+class BugService {
   async getAll() {
     return await _repository.find({});
   }
+  async getBugById(id) {
+    return await _repository.find({ id })
+  }
+  async create(rawData) {
+    return await _repository.create(rawData)
+  }
+  async update(id, update) {
+    _repository.findByIdAndUpdate(id, update, { new: true })
+  }
 }
 
-const valueService = new ValueService();
-export default valueService;
+const bugService = new BugService();
+export default bugService;
