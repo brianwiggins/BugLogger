@@ -11,7 +11,7 @@ export default class BugController {
       .get("/:id", this.getById)
       .post("", this.create)
       .get("/:id/note", this.getnotesByBugId)
-      .put("", this.edit)
+      .put("/:id", this.edit)
       .delete("/:id", this.delete)
   }
 

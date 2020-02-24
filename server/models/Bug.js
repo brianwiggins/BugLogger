@@ -7,6 +7,6 @@ const Bug = new Schema({
   description: { type: String, required: true },
   title: { type: String, required: true },
   reportedBy: { type: String },
-  lastModified: { type: Date }
+  updatedAt: { type: Date }
 }, { timestamps: true, toJSON: { virtuals: true } })
 export default Bug;
