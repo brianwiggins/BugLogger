@@ -27,7 +27,6 @@ export default class BugController {
     try {
       let data = await bugService.getById(req.params.id)
       res.send(data)
-
     } catch (e) {
       next(e)
     }
