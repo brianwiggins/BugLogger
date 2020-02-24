@@ -7,7 +7,7 @@ class BugService {
   async getAll() {
     return await _repository.find({});
   }
-  async getBugById(id) {
+  async getById(id) {
     return await _repository.find({ id })
   }
   async create(rawData) {
