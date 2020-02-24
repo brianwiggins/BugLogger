@@ -32,10 +32,10 @@ class BugService {
       bug["lastModified"] = new Date();
       bug["message"] = ("This bug is closed permenantly");
       await bug.save();
+      return ("Bug has been closed")
 
-    } else {
-      return new Error("This bug has already been closed")
     }
+    return new Error("This bug has already been closed")
   }
 }
 
