@@ -18,9 +18,23 @@ class BugService {
     if (!bug["closed"]) {
       bug = update;
       bug["lastModified"] = new Date();
+      bug["message"] = ("Bug updated!")
       await bug.save();
+
     } else {
       return (new Error("This bug has already been closed for editing"))
+    }
+  }
+  async delete(id) {
+    let bug = await _repository.findById(id);
+    if (!bug["closed"]) {
+      bug["closed"] = true;
+      bug["lastModified"] = new Date();
+      bug["message"] = ("This bug is closed permenantly");
+      await bug.save();
+
+    } else {
+      return new Error("This bug has already been closed")
     }
   }
 }

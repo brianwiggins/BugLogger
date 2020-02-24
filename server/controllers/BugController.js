@@ -12,6 +12,7 @@ export default class BugController {
       .post("", this.create)
       .get("/:id/note", this.getnotesByBugId)
       .put("", this.edit)
+      .delete("/:id", this.delete)
   }
 
   async getAll(req, res, next) {
@@ -57,4 +58,14 @@ export default class BugController {
       next(e)
     }
   }
+
+  async delete(req, res, next) {
+    try {
+      await bugService.delete(req.params.id);
+      res.send(req.name + "deleted")
+    } catch (e) {
+      next(e)
+    }
+  }
+
 }
