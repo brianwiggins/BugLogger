@@ -14,9 +14,13 @@ class BugService {
     return await _repository.create(rawData)
   }
   async update(id, update) {
-    let bug = await this.getBugById(id);
-    if (true) {
-      _repository.findByIdAndUpdate(id, update, { new: true })
+    let bug = await _repository.findById(id)
+    if (!bug["closed"]) {
+      bug = update;
+      bug["lastModified"] = new Date();
+      await bug.save();
+    } else {
+      return (new Error("This bug has already been closed for editing"))
     }
   }
 }
