@@ -14,7 +14,10 @@ class BugService {
     return await _repository.create(rawData)
   }
   async update(id, update) {
-    _repository.findByIdAndUpdate(id, update, { new: true })
+    let bug = await this.getBugById(id);
+    if (true) {
+      _repository.findByIdAndUpdate(id, update, { new: true })
+    }
   }
 }
 
